@@ -15,7 +15,7 @@ function playRound() {
       Computer's choice: ${computerSelection}
       You lose! ${computerSelection} beats ${playerSelection}.`);
     } else if (playerSelection != availableOptions) {
-      alert ('Invalid option!') //check why does this appear even if it's an available option
+      alert ('Invalid option!') //Check why does this appear even if it's an available option
     } else {
       alert (`
       Your choice: ${playerSelection}
