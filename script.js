@@ -11,10 +11,11 @@ let tieContainer = document.getElementById('tie');
 let playerChoice = document.querySelector('.player-choice');
 let computerChoice = document.querySelector('.computer-choice');
 let mainContainer = document.querySelector('.main-container');
+let roundWinner = document.querySelector('.round-winner');
 
 // Computer input
 function computerPlay() {
-  let choice = ['rock', 'paper', 'scissors'];
+  let choice = ['Rock', 'Paper', 'Scissors'];
   let randomPlay = Math.floor(Math.random() * choice.length);
   return choice[randomPlay]
 }
@@ -22,23 +23,23 @@ function computerPlay() {
 // User input
 rockButton.addEventListener('click', () => {
   let computerSelection = computerPlay();
-  playRound('rock', computerSelection);
-  playerChoice.innerText = "You: rock";
-  computerChoice.innerText = `Computer: ${computerSelection}`
+  playRound('Rock', computerSelection);
+  playerChoice.innerText = "You: Rock";
+  computerChoice.innerText = `AI: ${computerSelection}`
 });
 
 paperButton.onclick = () => {
   let computerSelection = computerPlay();
-  playRound('paper', computerSelection)
-  playerChoice.innerText = "You: paper";
-  computerChoice.innerText = `Computer: ${computerSelection}`
+  playRound('Paper', computerSelection)
+  playerChoice.innerText = "You: Paper";
+  computerChoice.innerText = `AI: ${computerSelection}`
 }
 
 scissorsButton.onclick = () => {
   let computerSelection = computerPlay();
-  playRound('scissors', computerSelection);
-  playerChoice.innerText = "You: scissors";
-  computerChoice.innerText = `Computer: ${computerSelection}`
+  playRound('Scissors', computerSelection);
+  playerChoice.innerText = "You: Scissors";
+  computerChoice.innerText = `AI: ${computerSelection}`
 }
 
 // Gameplay
@@ -47,37 +48,53 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     tieScore += 1;
     tieContainer.innerText = `Ties: ${tieScore}`
-
-  } else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "rock") {
+    roundWinner.innerText = `It's a tie! Choose again.`
+    roundWinner.style.backgroundColor = "orange";
+  } else if (playerSelection === "Rock" && computerSelection === "Scissors" || playerSelection === "Scissors" && computerSelection === "Paper" || playerSelection === "Paper" && computerSelection === "Rock") {
     playerScore += 1;
-    playerScoreContainer.innerText = `Your score: ${playerScore}`;
-  } else if (playerSelection === "scissors" && computerSelection === "rock" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "rock" && computerSelection === "paper") {
+    playerScoreContainer.innerText = `You: ${playerScore}`;
+    roundWinner.innerText = `${playerSelection} beats ${computerSelection}. You won this round!
+    Choose again.`
+    roundWinner.style.backgroundColor = "green";
+  } else if (playerSelection === "Scissors" && computerSelection === "Rock" || playerSelection === "Paper" && computerSelection === "Scissors" || playerSelection === "Rock" && computerSelection === "Paper") {
     computerScore += 1;
-    computerScoreContainer.innerText = `Computer score: ${computerScore}`;
+    computerScoreContainer.innerText = `AI: ${computerScore}`;
+    roundWinner.innerText = `${computerSelection} beats ${playerSelection}. You lost this round.
+    Choose again.`
+    roundWinner.style.backgroundColor = "red";
   }
 
   // Final score
   if (playerScore === 5) {
     mainContainer.innerHTML = `
-   <h1>You won!</h1>
+    <div class="final-result">
+   <h1>You won! 🎉</h1>
    <h3>Play again</h3>
+   </div>
    `
+    mainContainer.style.justifyContent = "center;";
     setTimeout(function () {
       window.location.reload();
     }, 1500)
   } else if (computerScore === 5) {
     mainContainer.innerHTML = `
-    <h1>You lost!</h1>
+    <div class="final-result">
+    <h1>You lost! 😞</h1>
     <h3>Play again</h3>
+    </div>
   `
+    mainContainer.style.justifyContent = "center;";
     setTimeout(function () {
       window.location.reload();
     }, 1500)
   } else if (tieScore === 5) {
     mainContainer.innerHTML = `
-    <h1>It's a tie!</h1>
+    <div class="final-result">
+    <h1>It's a tie! 😶</h1>
     <h3>Play again</h3>
+    </div>
   `
+  mainContainer.style.justifyContent = "center;";
     setTimeout(function () {
       window.location.reload();
     }, 1500)

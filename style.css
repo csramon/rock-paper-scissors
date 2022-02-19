@@ -1,33 +1,131 @@
 body {
     display: flex;
     justify-content: center;
+    background-image: linear-gradient(#e66465, #9198e5);
+    background-repeat: no-repeat;
+    height: 100vh;
+    align-items: center;
+    color: #fff;
+    font-family: 'Merriweather Sans', sans-serif;
 }
 
 .container {
     display: flex;
 }
 
+hr {
+    width: 20%;
+}
 .main-container {
-    border: 2px solid black;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    width: 60%;
+    background-image: linear-gradient(#2f1f4e, #353fac);
+    border-radius: 20px;
+    box-shadow: 5px 5px 40px #000;
+    height: 70%;
 }
 
-.options-container button {
+.container1 {
+    align-items: center;
+    top: 0;
+}
+
+h3,
+h2,
+h1 {
+    text-align: center;
+    padding: 0;
     margin: 5px;
 }
 
-.main-container h2 {
+h3 {
+    font-weight: 300;
     font-size: 1rem;
+}
+
+h2 {
+    font-weight: 400;
+}
+
+.options-container button {
+    border: #a3abff;
+    outline: orange;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    font-size: 2rem;
+    border-radius: 20px;
+    transition: 0.3s ease-in-out;
+}
+
+.options-container button:hover {
+    background: #a3abff;
+    color:rgb(239, 231, 255);
 }
 
 .score-container {
     flex-direction: row;
 }
+.score-container p {
+    background-color: rgb(212, 123, 212);
+}
+
+.round-winner {
+    text-align: center;
+    background: none;
+}
 
 p {
-    border: 2px solid black;
-    margin: 5px;
     padding: 5px;
+    margin: 5px;
+    align-self: center;
+    transition: 0.3s ease;
+    background-color: rgb(154, 112, 231);
+    border-radius: 20px;
+}
+
+.final-result {
+    font-size: 2rem;
+}
+.final-result h3 {
+    font-size: 2rem;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 360px) {
+    .main-container {
+        width: 90%;
+    }
+    .container1 {
+        flex-direction: column;
+    }
+    h1 {
+        font-size: 1.2rem;
+    }
+    h2 {
+        font-size: 0.9rem;
+    }
+    h3 {
+        font-size: 0.9rem;
+        padding: 0 5px;
+    }
+    .options-container button {
+        font-size: 1.2rem;
+    }
+    p{
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    .final-result  h1 {
+        font-size: 2rem;
+    }
+    .final-result h3 {
+        font-size: 1.5rem;
+    }
 }
